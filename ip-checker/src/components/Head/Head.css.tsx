@@ -6,9 +6,9 @@ import Background from "styles/images/pattern-bg.png";
 export const HeadContainer = styled.div`
     background-image: url(${Background});
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 
-    height: 28rem;
+    height: 30vh;
 
     display: flex;
     flex-direction: column;
@@ -22,6 +22,6 @@ export const HeadContainer = styled.div`
 export const Title = styled.h1`
     color: ${({ theme }) => theme.white};
     font-family: ${( {theme }) => theme.fontFamily};
-    font-weight: 700;
+    font-weight: 500;
     font-size: x-large;
 `

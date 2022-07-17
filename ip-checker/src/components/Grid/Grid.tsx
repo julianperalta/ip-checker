@@ -14,6 +14,6 @@ interface GridProps {
     children: any;
 };
 
-const Grid = ({ children }: GridProps) => <GridThemeProvider gridTheme={gridTheme}>{children}</GridThemeProvider>;
+const Grid: React.FC<GridProps> = ({ children }) => <GridThemeProvider gridTheme={gridTheme}>{children}</GridThemeProvider>;
 
 export default Grid;

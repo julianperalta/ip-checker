@@ -7,7 +7,6 @@ import Grid from "components/Grid";
 import Theme from "components/Theme";
 import Head from "components/Head";
 
-
 function App() {
     return (
         <Grid>
@@ -18,6 +17,6 @@ function App() {
             </Theme>
         </Grid>
     );
-}
+};
 
 export default App;

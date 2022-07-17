@@ -12,6 +12,6 @@ interface ThemeProps {
     children: any;
 };
 
-const Theme = ({ children }: ThemeProps) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+const Theme: React.FC<ThemeProps> = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 
 export default Theme;
