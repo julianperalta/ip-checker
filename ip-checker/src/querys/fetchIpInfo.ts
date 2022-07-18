@@ -13,7 +13,11 @@ export const fetchIpInfo = async ({ queryKey }: any): Promise<AddressInfo> => {
     const res = await fetch(`https://wookie.codesubmit.io/ipcheck?ip=${ipAddress}`, fetchConfig);
 
     if (!res.ok) {
-        throw new Error("Ocurrió un error inesperado");
+        if (res.status === 422) {
+            throw new Error("La IP ingresada no es válida");
+        } else {
+            throw new Error("Ocurrió un error inesperado");
+        }
     }
 
     return res.json()

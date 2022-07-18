@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { media } from "styled-bootstrap-grid";
 
-export const SearchContainer = styled.form`
+export const SearchContainer = styled.div`
+    position: relative;
+`;
+
+export const SearchBoxContainer = styled.form`
     width: 100%;
     max-width: 27.5rem;
     display: flex;
@@ -59,4 +63,33 @@ export const SearchButton = styled.button`
         border-top-right-radius: 16px;
         border-bottom-right-radius: 16px;
     `}
-`
+`;
+
+export const InputError = styled.span`
+    position: absolute;
+    top: 4.5rem;
+    left: 2rem;
+    background-color: ${({ theme }) => theme.white};
+
+    height: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.60);
+
+    z-index: 1000;
+
+    &:before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        transform: rotate(45deg);
+        position: absolute;
+        background-color: ${({ theme }) => theme.white};
+        z-index: 100;
+        top: -5px;
+    }
+`;

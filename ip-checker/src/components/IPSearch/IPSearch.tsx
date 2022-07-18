@@ -4,8 +4,6 @@ import { useQuery } from "react-query";
 import { fetchIpInfo } from "querys/fetchIpInfo";
 // HOOKS
 import { useFetchOwnIP } from "hooks/useFetchOwnIP";
-// UITLS
-import { debounce } from "lodash";
 // MODELS
 import { AddressInfo } from "models/AddressInfo";
 // COMPONENTS
@@ -20,8 +18,9 @@ const IPSearch = () => {
     const [address, setAddress] = useState<AddressInfo>({});
     const [ipToSearch, setIpToSearch] = useState("");
     const { ownIp } = useFetchOwnIP();
-    const { data, status, isLoading, isFetching, refetch } = useQuery<AddressInfo>(["ipData", { ipAddress: ipToSearch || ownIp }], fetchIpInfo, {
+    const { data, isLoading, refetch } = useQuery<AddressInfo>(["ipData", { ipAddress: ipToSearch || ownIp }], fetchIpInfo, {
         enabled: false,
+        onError: (err) => {console.log(err)}
     });
 
     useEffect(() => {
@@ -39,8 +38,6 @@ const IPSearch = () => {
     useEffect(() => {
         refetch();
     }, [ipToSearch, refetch]);
-
-    console.log({ status, isLoading, isFetching });
 
     const handleSubmit = (submittedIp: string) => {
         setIpToSearch(submittedIp);

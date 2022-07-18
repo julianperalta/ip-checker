@@ -20,7 +20,6 @@ export const InfoContainer = styled.div`
     ${media.lg`
         width: 70%;
         max-width: 58rem;
-        /* max-width: initial; */
     `}
 `;
 
