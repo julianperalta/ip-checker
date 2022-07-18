@@ -14,11 +14,17 @@ export const InfoContainer = styled.div`
     align-items: center;
 
     padding: 1.5rem;
-    margin-bottom: -10rem;
+    margin-bottom: -12rem;
+
+    z-index: 999;
 `;
 
 export const SingleDataContainer = styled.div`
     margin-bottom: 1rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
     
     display: flex;
     flex-direction: column;

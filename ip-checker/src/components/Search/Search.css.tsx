@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { media } from "styled-bootstrap-grid";
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.form`
     width: 100%;
     display: flex;
 
@@ -16,11 +16,11 @@ export const SearchContainer = styled.div`
     }
 
     input {
-        width: 90%;
+        width: 85%;
     }
 
     button {
-        width: 10%;
+        width: 15%;
     }
 
     ${media.md`

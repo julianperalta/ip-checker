@@ -1,11 +1,14 @@
 import React from "react";
-import { QueryClientProvider } from "react-query";
 // UTILS
+import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClientProvider } from "react-query";
 import { queryClient } from "utils/queryClientConfig";
 // COMPONENTS
-import Grid from "components/Grid";
-import Theme from "components/Theme";
+import Grid from "styles/Providers/Grid";
+import Theme from "styles/Providers/Theme";
 import Head from "components/Head";
+// STYLES
+import "styles/main.css";
 
 function App() {
     return (
@@ -13,6 +16,8 @@ function App() {
             <Theme>
                 <QueryClientProvider client={queryClient}>
                     <Head />
+                    <div style={{ backgroundColor: "gray", height: "100%"}} />
+                    <ReactQueryDevtools />
                 </QueryClientProvider>
             </Theme>
         </Grid>

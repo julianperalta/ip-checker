@@ -1,4 +1,6 @@
-export const fetchIpInfo = async ({ queryKey }: any) => {
+import { AddressInfo } from "models/AddressInfo";
+
+export const fetchIpInfo = async ({ queryKey }: any): Promise<AddressInfo> => {
     const [, { ipAddress }] = queryKey;
     const fetchConfig: RequestInit = {
         method: "GET",
@@ -9,5 +11,22 @@ export const fetchIpInfo = async ({ queryKey }: any) => {
     };
 
     const res = await fetch(`https://wookie.codesubmit.io/ipcheck?ip=${ipAddress}`, fetchConfig);
-    return res.json();
+
+    if (!res.ok) {
+        throw new Error("Ocurrió un error inesperado");
+    }
+
+    return res.json()
+    .then((data) => {
+        const { ip, isp, location } = data;
+
+        const addressInfo: AddressInfo = {
+            ipAddress: ip,
+            location: `${location.city}, ${location.region}`,
+            timezone: `UTC ${location.timezone}`,
+            isp,
+        };
+
+        return addressInfo;
+    });
 }

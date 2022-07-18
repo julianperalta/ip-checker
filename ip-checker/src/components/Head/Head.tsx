@@ -1,39 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 // QUERYS
 import { useQuery } from "react-query";
-import { fetchOwnIp } from "querys/fetchOwnIp";
+import { fetchIpInfo } from "querys/fetchIpInfo";
+// HOOKS
+import { useFetchOwnIP } from "hooks/useFetchOwnIP";
 // COMPONENTS
 import Search from "components/Search";
 // STYLES
 import { HeadContainer } from "./Head.css";
 import { Title } from "./Head.css";
 import IPInfo from "components/IPInfo";
-import { fetchIpInfo } from "querys/fetchIpInfo";
-
-interface Address {
-    ipAddress: string;
-    location: string;
-    timezone: string;
-    isp: string;
-}
+import { AddressInfo } from "models/AddressInfo";
 
 const Head = () => {
-    const { data: ownIpData } = useQuery("ownIp", fetchOwnIp);
-    const ownIp = ownIpData?.ip;
-    const { data, status } = useQuery(["ipData", { ipAddress: ownIp }], fetchIpInfo, {
-        enabled: !!ownIp,
+    let ipFalopa = useRef("");
+    const { data, refetch } = useQuery<AddressInfo>(["ipData", { ipAddress: ipFalopa.current }], fetchIpInfo, {
+        enabled: false,
     });
+    const { ownIp } = useFetchOwnIP();
 
     useEffect(() => {
-        console.log(data);
-    }, [data]);
+        if (ownIp !== undefined) {
+            ipFalopa.current = ownIp;
+            refetch();
+        }
+    }, [ownIp, refetch]);
 
-    const address = {
-        ipAddress: "string",
-        location: "string",
-        timezone: "string",
-        isp: "strin"
-    };
+    const address: AddressInfo = data ?? {};
 
     return (
         <HeadContainer>
@@ -41,7 +34,7 @@ const Head = () => {
                 IP Address Tracker
             </Title>
             <Search />
-            <IPInfo addressData={address as any} />
+            <IPInfo addressData={address} />
         </HeadContainer>
     )
 }

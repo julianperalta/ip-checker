@@ -8,7 +8,7 @@ export const HeadContainer = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
 
-    height: 30vh;
+    height: 30%;
 
     display: flex;
     flex-direction: column;

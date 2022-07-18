@@ -7,6 +7,9 @@ export const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
             cacheTime: CACHE_DURATION_1DAY,
+            refetchOnMount: false,
+            refetchOnWindowFocus: false,
+            staleTime: Infinity,
         },
     }
 });
@@ -16,5 +19,6 @@ const localStoragePersistor = createWebStoragePersistor({ storage: window.localS
 persistQueryClient({
     queryClient,
     persistor: localStoragePersistor,
+    maxAge: CACHE_DURATION_1DAY
 });
  
