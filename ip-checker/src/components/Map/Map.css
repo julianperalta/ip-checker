@@ -1,5 +1,11 @@
 .leaflet-container {
-    width: 100vW;
+    width: 100vw;
 
-    height: 70%;
+    height: 65%;
+}
+
+@media (min-width: 1200px) {
+    .leaflet-container {
+        height: 70%;
+    }
 }

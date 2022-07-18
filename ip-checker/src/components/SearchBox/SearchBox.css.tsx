@@ -3,28 +3,41 @@ import { media } from "styled-bootstrap-grid";
 
 export const SearchContainer = styled.form`
     width: 100%;
+    max-width: 27.5rem;
     display: flex;
 
     margin-bottom: 1rem;
 
     & > * {
-        font-size: 1rem;
         font-family: ${({ theme }) => theme.fontFamily};
-
-        padding: 1rem;
         border: none;
     }
 
     input {
-        width: 85%;
+        padding: 1.25rem;
+        width: 80%;
+        
+        font-size: 16px;
+
+
+        ${media.md`
+            width: 85%;
+        `}
     }
 
     button {
-        width: 15%;
+        padding: 1rem;
+        width: 20%;
+
+        font-size: 1rem;
+
+        ${media.md`
+            width: 15%;
+        `}
     }
 
     ${media.md`
-        width: 35%;
+        width: 27.5rem;
     `}
 `;
 
@@ -33,8 +46,8 @@ export const SearchInput = styled.input`
         background-color: ${theme.white};
         color: ${theme.darkGray};
 
-        border-top-left-radius: 15px;
-        border-bottom-left-radius: 15px;
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
     `}
 `;
 
@@ -43,7 +56,7 @@ export const SearchButton = styled.button`
         background-color: ${theme.veryDarkGray};
         color: ${theme.white};
 
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
     `}
 `

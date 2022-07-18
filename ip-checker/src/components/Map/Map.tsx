@@ -31,7 +31,7 @@ const MapContent: React.FC<MapProps> = ({ lat, lng }) => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={position} icon={IconLocation}>
+            <Marker position={position} /*icon={IconLocation}*/>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
                 </Popup>
