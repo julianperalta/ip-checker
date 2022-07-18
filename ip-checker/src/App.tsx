@@ -14,7 +14,6 @@ function App() {
             <Theme>
                 <QueryClientProvider client={queryClient}>
                     <IPSearch />
-                    {/* <div style={{ backgroundColor: "gray", height: "100%"}} /> */}
                     <ReactQueryDevtools />
                 </QueryClientProvider>
             </Theme>

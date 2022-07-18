@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 // QUERYS
 import { useQuery } from "react-query";
 import { fetchIpInfo } from "querys/fetchIpInfo";
 // HOOKS
 import { useFetchOwnIP } from "hooks/useFetchOwnIP";
+// UITLS
+import { debounce } from "lodash";
 // MODELS
 import { AddressInfo } from "models/AddressInfo";
 // COMPONENTS
@@ -15,28 +17,33 @@ import { UpperSectionContainer } from "./IPSearch.css";
 import { Title } from "./IPSearch.css";
 
 const IPSearch = () => {
-    let ipToSearch = useRef("");
-    const { data, refetch } = useQuery<AddressInfo>(["ipData", { ipAddress: ipToSearch.current }], fetchIpInfo, {
+    const [address, setAddress] = useState<AddressInfo>({});
+    const [ipToSearch, setIpToSearch] = useState("");
+    const { ownIp } = useFetchOwnIP();
+    const { data, status, isLoading, isFetching, refetch } = useQuery<AddressInfo>(["ipData", { ipAddress: ipToSearch || ownIp }], fetchIpInfo, {
         enabled: false,
     });
-    const { ownIp } = useFetchOwnIP();
 
     useEffect(() => {
         if (ownIp !== undefined) {
-            ipToSearch.current = ownIp;
-        }
-    }, [ownIp]);
-
-    useEffect(() => {
-        if (ipToSearch.current !== "") {
             refetch();
         }
-    }, [ipToSearch, refetch])
+    }, [ownIp, refetch]);
 
-    const address: AddressInfo = data ?? {};
+    useEffect(() => {
+        if (data !== undefined) {
+            setAddress(data);
+        }
+    }, [data]);
 
-    const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        ipToSearch.current = evt.target.value;
+    useEffect(() => {
+        refetch();
+    }, [ipToSearch, refetch]);
+
+    console.log({ status, isLoading, isFetching });
+
+    const handleSubmit = (submittedIp: string) => {
+        setIpToSearch(submittedIp);
     };
 
     return (
@@ -45,8 +52,8 @@ const IPSearch = () => {
                 <Title>
                     IP Address Tracker
                 </Title>
-                <SearchBox onSubmit={refetch} handleChange={handleChange} />
-                <IPInfo addressData={address} />
+                <SearchBox onSubmit={handleSubmit} />
+                <IPInfo addressData={address} isLoading={isLoading}/>
             </UpperSectionContainer>
             <Map {...address.coordinates as any}/>
         </>

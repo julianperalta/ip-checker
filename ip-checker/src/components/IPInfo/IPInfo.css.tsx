@@ -24,7 +24,11 @@ export const InfoContainer = styled.div`
     `}
 `;
 
-export const InfoCard = styled.div`
+interface InfoCardProps {
+    noGrid: boolean;
+}
+
+export const InfoCard = styled.div<InfoCardProps> `
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
@@ -40,7 +44,12 @@ export const InfoCard = styled.div`
 
     padding: 1.5rem;
 
-    ${media.lg`
+    ${props => props.noGrid && `
+        display: flex;
+        height: 16.5rem;
+    `}
+
+    ${({ noGrid }) => media.lg`
         padding: 2rem 1.5rem;
 
         grid-template-columns: repeat(4, 1fr);
@@ -48,6 +57,10 @@ export const InfoCard = styled.div`
         grid-column-gap: 2rem;
 
         height: 9.5rem;
+
+        ${noGrid && `
+            display: flex;
+        `}
     `}
 `;
 
