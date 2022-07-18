@@ -4,7 +4,7 @@ import { ReactComponent as IconArrow } from "styles/images/icon-arrow.svg";
 // CONSTANTS
 import { IP_REGEX } from "./constants";
 // STYLES
-import { SearchBoxContainer, SearchInput, SearchButton, SearchContainer, InputError } from "./SearchBox.css";
+import { SearchBoxContainer, SearchInput, SearchButton, SearchContainer, InputError, ErrorContainer } from "./SearchBox.css";
 
 interface SearchProps {
     onSubmit: any;
@@ -43,11 +43,13 @@ const SearchBox: React.FC<SearchProps> = ({ onSubmit }) => {
                     <IconArrow />
                 </SearchButton>
             </SearchBoxContainer>
-            {errorMsg !== "" &&
-                <InputError>
-                    {errorMsg}
-                </InputError>
-            }
+            <ErrorContainer>
+                {errorMsg !== "" &&
+                    <InputError>
+                        {errorMsg}
+                    </InputError>
+                }
+            </ErrorContainer>
         </SearchContainer>
     );
 };

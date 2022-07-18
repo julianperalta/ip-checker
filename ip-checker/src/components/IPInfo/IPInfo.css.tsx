@@ -19,7 +19,7 @@ export const InfoContainer = styled.div`
 
     ${media.lg`
         width: 70%;
-        max-width: 58rem;
+        max-width: initial;
     `}
 `;
 
@@ -55,12 +55,14 @@ export const InfoCard = styled.div<InfoCardProps> `
         grid-template-rows: 1fr;
         grid-column-gap: 2rem;
 
-        height: 9.5rem;
+        min-height: 9.5rem;
 
         ${noGrid && `
             display: flex;
         `}
     `}
+
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.4);
 `;
 
 export const SingleDataContainer = styled.div`

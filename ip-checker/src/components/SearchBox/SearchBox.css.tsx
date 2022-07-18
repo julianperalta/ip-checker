@@ -2,6 +2,11 @@ import styled from "styled-components";
 import { media } from "styled-bootstrap-grid";
 
 export const SearchContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: relative;
 `;
 
@@ -52,7 +57,12 @@ export const SearchInput = styled.input`
 
         border-top-left-radius: 16px;
         border-bottom-left-radius: 16px;
+
+        &:hover {
+            cursor: pointer;
+        }
     `}
+
 `;
 
 export const SearchButton = styled.button`
@@ -62,11 +72,26 @@ export const SearchButton = styled.button`
 
         border-top-right-radius: 16px;
         border-bottom-right-radius: 16px;
+    
+        &:hover {
+            cursor: pointer;
+            background-color: ${theme.veryDarkGrayHover};
+        }
+
+        &:active {
+            filter: brightness(85%);
+        }
     `}
 `;
 
+export const ErrorContainer = styled.div`
+    position: relative;
+    width: 15rem;
+
+    z-index: 1000;
+`;
+
 export const InputError = styled.span`
-    position: absolute;
     top: 4.5rem;
     left: 2rem;
     background-color: ${({ theme }) => theme.white};
@@ -79,8 +104,6 @@ export const InputError = styled.span`
     align-items: center;
 
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.60);
-
-    z-index: 1000;
 
     &:before {
         content: "";
