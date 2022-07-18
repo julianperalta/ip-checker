@@ -6,17 +6,15 @@ import { queryClient } from "utils/queryClientConfig";
 // COMPONENTS
 import Grid from "styles/Providers/Grid";
 import Theme from "styles/Providers/Theme";
-import Head from "components/Head";
-// STYLES
-import "styles/main.css";
+import IPSearch from "components/IPSearch";
 
 function App() {
     return (
         <Grid>
             <Theme>
                 <QueryClientProvider client={queryClient}>
-                    <Head />
-                    <div style={{ backgroundColor: "gray", height: "100%"}} />
+                    <IPSearch />
+                    {/* <div style={{ backgroundColor: "gray", height: "100%"}} /> */}
                     <ReactQueryDevtools />
                 </QueryClientProvider>
             </Theme>

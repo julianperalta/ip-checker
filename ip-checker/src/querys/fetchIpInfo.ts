@@ -25,6 +25,10 @@ export const fetchIpInfo = async ({ queryKey }: any): Promise<AddressInfo> => {
             location: `${location.city}, ${location.region}`,
             timezone: `UTC ${location.timezone}`,
             isp,
+            coordinates: {
+                lat: location.lat,
+                lng: location.lng,
+            }
         };
 
         return addressInfo;

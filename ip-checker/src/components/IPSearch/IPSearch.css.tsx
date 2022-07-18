@@ -3,7 +3,7 @@ import { media } from "styled-bootstrap-grid";
 import Background from "styles/images/pattern-bg.png";
 
 
-export const HeadContainer = styled.div`
+export const UpperSectionContainer = styled.div`
     background-image: url(${Background});
     background-repeat: no-repeat;
     background-size: cover;

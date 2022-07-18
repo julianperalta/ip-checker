@@ -9,6 +9,7 @@ export const queryClient = new QueryClient({
             cacheTime: CACHE_DURATION_1DAY,
             refetchOnMount: false,
             refetchOnWindowFocus: false,
+            refetchOnReconnect: false,
             staleTime: Infinity,
         },
     }

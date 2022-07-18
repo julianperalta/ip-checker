@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 // MODELS
 import { AddressInfo } from "models/AddressInfo";
 // STYLES
@@ -9,16 +9,24 @@ interface IPInfoProps {
 };
 
 const IPInfo: React.FC<IPInfoProps> = ({ addressData }) => {
-    const renderData = Object.keys(addressData).map((key) => (
-        <SingleDataContainer key={key}>
-            <Label>{key}</Label>
-            <Span>{addressData[key as keyof AddressInfo]}</Span>
-        </SingleDataContainer>
-    ));
-
     return (
         <InfoContainer>
-            {renderData}
+            <SingleDataContainer>
+                <Label>IP Address</Label>
+                <Span>{addressData.ipAddress}</Span>
+            </SingleDataContainer>
+            <SingleDataContainer>
+                <Label>Location</Label>
+                <Span>{addressData.location}</Span>
+            </SingleDataContainer>
+            <SingleDataContainer>
+                <Label>Timezone</Label>
+                <Span>{addressData.timezone}</Span>
+            </SingleDataContainer>
+            <SingleDataContainer>
+                <Label>ISP</Label>
+                <Span>{addressData.isp}</Span>
+            </SingleDataContainer>
         </InfoContainer>
     );
 };

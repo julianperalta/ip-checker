@@ -3,4 +3,8 @@ export interface AddressInfo {
     location?: string;
     timezone?: string;
     isp?: string;
+    coordinates?: {
+        lat: number;
+        lng: number;
+    };
 }
