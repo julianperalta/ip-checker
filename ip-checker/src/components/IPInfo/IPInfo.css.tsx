@@ -74,16 +74,14 @@ export const SingleDataContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    ${media.lg`
+    ${({ theme }) => media.lg`
         &:after {
-            ${({ theme }: any) => `
-                content: "";
-                position: absolute;
-                border-left: 1px solid ${theme.darkGray};
-                top: 10%;
-                right: -10px;
-                height: 80%;
-            `}
+            content: "";
+            position: absolute;
+            border-left: 1px solid ${theme.darkGray};
+            top: 10%;
+            right: -10px;
+            height: 80%;
         }
 
         &:last-child:after {

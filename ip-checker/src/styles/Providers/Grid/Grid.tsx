@@ -11,7 +11,7 @@ const gridTheme = {
 };
 
 interface GridProps {
-    children: any;
+    children: React.ReactChild;
 };
 
 const Grid: React.FC<GridProps> = ({ children }) => <GridThemeProvider gridTheme={gridTheme}>{children}</GridThemeProvider>;

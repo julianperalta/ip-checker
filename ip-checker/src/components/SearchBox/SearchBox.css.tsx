@@ -10,7 +10,7 @@ export const SearchContainer = styled.div`
     position: relative;
 `;
 
-export const SearchBoxContainer = styled.form`
+export const SearchBoxForm = styled.form`
     width: 100%;
     max-width: 27.5rem;
     display: flex;

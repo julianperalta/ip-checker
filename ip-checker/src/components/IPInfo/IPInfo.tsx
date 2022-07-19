@@ -6,7 +6,7 @@ import Loader from "components/Loader";
 // STYLES
 import { InfoContainer, InfoCard, SingleDataContainer, Label, Span } from "./IPInfo.css";
 
-interface IPInfoProps {
+export interface IPInfoProps {
     addressData: AddressInfo;
     isLoading: boolean;
 };

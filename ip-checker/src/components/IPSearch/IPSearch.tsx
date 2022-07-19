@@ -6,6 +6,7 @@ import { fetchIpInfo } from "querys/fetchIpInfo";
 import { useFetchOwnIP } from "hooks/useFetchOwnIP";
 // MODELS
 import { AddressInfo } from "models/AddressInfo";
+import { Coordinates } from "models/Coordinates";
 // COMPONENTS
 import SearchBox from "components/SearchBox";
 import IPInfo from "components/IPInfo";
@@ -20,7 +21,9 @@ const IPSearch = () => {
     const { ownIp } = useFetchOwnIP();
     const { data, isLoading, refetch } = useQuery<AddressInfo>(["ipData", { ipAddress: ipToSearch || ownIp }], fetchIpInfo, {
         enabled: false,
-        onError: (err) => {console.log(err)}
+        onError: (err) => {
+            console.error(err);
+        }
     });
 
     useEffect(() => {
@@ -52,7 +55,7 @@ const IPSearch = () => {
                 <SearchBox onSubmit={handleSubmit} />
                 <IPInfo addressData={address} isLoading={isLoading}/>
             </UpperSectionContainer>
-            <Map {...address.coordinates as any}/>
+            <Map {...address.coordinates as Coordinates}/>
         </>
     )
 }

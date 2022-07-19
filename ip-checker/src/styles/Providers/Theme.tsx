@@ -10,7 +10,7 @@ const theme = {
 };
 
 interface ThemeProps {
-    children: any;
+    children: React.ReactElement | React.ReactElement[];
 };
 
 const Theme: React.FC<ThemeProps> = ({ children }) => <ThemeProvider theme={theme}>{children}</ThemeProvider>;

@@ -4,19 +4,20 @@ import { ReactComponent as IconArrow } from "styles/images/icon-arrow.svg";
 // CONSTANTS
 import { IP_REGEX, EMPTY_IP, INVALID_IP } from "./constants";
 // STYLES
-import { SearchBoxContainer, SearchInput, SearchButton, SearchContainer, InputError, ErrorContainer } from "./SearchBox.css";
+import { SearchBoxForm, SearchInput, SearchButton, SearchContainer, InputError, ErrorContainer } from "./SearchBox.css";
 
 interface SearchProps {
-    onSubmit: any;
+    onSubmit: (submittedIp: string) => void;
 };
 
 const SearchBox: React.FC<SearchProps> = ({ onSubmit }) => {
     const [searchedIp, setSearchedIp] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
 
-    const handleSubmit = (evt: any) => {
+    const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+        evt.persist();
         evt.preventDefault();
-        const ip: string = evt.target.elements.ip.value;
+        const ip: string = (evt.currentTarget.elements[0] as HTMLInputElement).value;
 
         if (ip === "") {
             setErrorMsg(EMPTY_IP);
@@ -37,12 +38,12 @@ const SearchBox: React.FC<SearchProps> = ({ onSubmit }) => {
 
     return (
         <SearchContainer>
-            <SearchBoxContainer onSubmit={handleSubmit}>
+            <SearchBoxForm onSubmit={handleSubmit}>
                 <SearchInput placeholder="Search for any IP address or domain" id="ip" name="ip" value={searchedIp} onChange={handleChange} role="input"/>
                 <SearchButton type="submit" role="button">
                     <IconArrow />
                 </SearchButton>
-            </SearchBoxContainer>
+            </SearchBoxForm>
             <ErrorContainer>
                 {errorMsg !== "" &&
                     <InputError>

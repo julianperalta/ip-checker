@@ -3,7 +3,7 @@ import React from "react";
 import { LoaderContainer, EmbeddedLoader } from "./Loader.css";
 
 interface LoaderProps {
-    children: any;
+    children: React.ReactElement | React.ReactElement[];
     showLoader: boolean;
 }
 

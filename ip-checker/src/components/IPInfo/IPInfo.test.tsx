@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import IPInfo from "./IPInfo";
+import IPInfo, { IPInfoProps } from "./IPInfo";
 import { AddressInfo } from 'models/AddressInfo';
 
-const setup = (props: any) => {
+const setup = (props: IPInfoProps) => {
     render(<IPInfo {...props} />);
 };
 
