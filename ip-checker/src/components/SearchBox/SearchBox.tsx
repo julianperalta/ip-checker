@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // COMPONENTS
 import { ReactComponent as IconArrow } from "styles/images/icon-arrow.svg";
 // CONSTANTS
-import { IP_REGEX } from "./constants";
+import { IP_REGEX, EMPTY_IP, INVALID_IP } from "./constants";
 // STYLES
 import { SearchBoxContainer, SearchInput, SearchButton, SearchContainer, InputError, ErrorContainer } from "./SearchBox.css";
 
@@ -19,9 +19,9 @@ const SearchBox: React.FC<SearchProps> = ({ onSubmit }) => {
         const ip: string = evt.target.elements.ip.value;
 
         if (ip === "") {
-            setErrorMsg("Por favor ingrese una IP");
+            setErrorMsg(EMPTY_IP);
         } else if (!ip.match(IP_REGEX)) {
-            setErrorMsg("La IP ingresada es inválida");
+            setErrorMsg(INVALID_IP);
         } else {
             onSubmit(ip);
         }
@@ -38,8 +38,8 @@ const SearchBox: React.FC<SearchProps> = ({ onSubmit }) => {
     return (
         <SearchContainer>
             <SearchBoxContainer onSubmit={handleSubmit}>
-                <SearchInput placeholder="Search for any IP address or domain" id="ip" name="ip" value={searchedIp} onChange={handleChange}/>
-                <SearchButton type="submit">
+                <SearchInput placeholder="Search for any IP address or domain" id="ip" name="ip" value={searchedIp} onChange={handleChange} role="input"/>
+                <SearchButton type="submit" role="button">
                     <IconArrow />
                 </SearchButton>
             </SearchBoxContainer>

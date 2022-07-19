@@ -22,7 +22,10 @@
     "baseUrl": "./src/",
     "paths": {
       "*": ["*"]
-  },
+    },
+    "jest": {
+      "preset": "ts-jest"
+    }
   },
   "include": [
     "src/**/*.tsx",
